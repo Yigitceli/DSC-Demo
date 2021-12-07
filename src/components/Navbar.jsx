@@ -19,7 +19,13 @@ export default function Navbar({ pp, setIsLoggedIn }) {
     <nav className="navbar navbar-light bg-dark p-3" style={{ height: "15vh" }}>
       <div className=" d-flex align-items-center w-100">
         <div>
-          {pp && <img src={pp} alt="profil" style={{ borderRadius: "50%" }} />}
+          {pp && (
+            <img
+              src={pp}
+              alt="profil"
+              style={{ borderRadius: "50%", width: "120px" }}
+            />
+          )}
         </div>
         <span
           style={{ flex: 1 }}
