@@ -24,11 +24,12 @@ function App() {
           firstName: user.displayName.split(" ")[0],
           lastName: user.displayName.split(" ")[1],
           email: user.email,
-        });       
+        });
 
-        const todosRef = await getDoc(doc(db, "Todos", user?.uid));
+        const todosRef = doc(db, "Todos", user?.uid);
+        const todosSnap = await getDoc(todosRef);
 
-        if (!todosRef.exists) {
+        if (!todosSnap.exists()) {          
           await setDoc(doc(db, "Todos", user?.uid), { todos: [] });
         }
 

@@ -80,7 +80,7 @@ export default function Todos({ user }) {
         {loading ? (
           <ReactLoading type={"spin"} color={"red"} height={200} width={150} />
         ) : (
-          todos.length > 0 &&
+          todos?.length > 0 &&
           todos?.map((item, index) => (
             <Todo
               key={index}
