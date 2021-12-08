@@ -10,15 +10,20 @@ import {
   signOut,
 } from "@firebase/auth";
 
-export default function Navbar({ pp, setIsLoggedIn }) {
+export default function Navbar({ pp, setIsLoggedIn, user, setIsLoading }) {
   const logOut = () => {
     setIsLoggedIn(false);
-    signOut(auth).then(() => {});
+    signOut(auth).then(() => {
+      setIsLoading(false);
+    });
   };
   return (
-    <nav className="navbar navbar-light bg-dark p-3" style={{ height: "15vh" }}>
-      <div className=" d-flex align-items-center w-100">
-        <div>
+    <nav className="navbar navbar-light bg-dark p-3">
+      <div
+        className=" d-flex align-items-center w-100"
+        style={{ height: "15vh" }}
+      >
+        <div style={{ flex: 1 }}>
           {pp && (
             <img
               src={pp}
@@ -29,14 +34,16 @@ export default function Navbar({ pp, setIsLoggedIn }) {
         </div>
         <span
           style={{ flex: 1 }}
-          className="navbar-brand mb-0 m-0 h1 text-danger fs-1 text-end"
+          className="navbar-brand mb-0 m-0 h1 text-danger text-center fs-1 text-end"
         >
           Todos
         </span>
         <div style={{ flex: 1 }} className="text-end">
-          <button type="button" className="btn btn-light" onClick={logOut}>
-            Logout
-          </button>
+          {user && (
+            <button type="button" className="btn btn-light" onClick={logOut}>
+              Logout
+            </button>
+          )}
         </div>
       </div>
     </nav>
